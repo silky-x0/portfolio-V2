@@ -1,52 +1,25 @@
-"use client";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import React from 'react';
 
-export default function Intro({ onComplete }: { onComplete: () => void }) {
-  const dotRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const hasAnimated = useRef(false); // ensure animation only runs once
-
-  useEffect(() => {
-    const onScroll = () => {
-      if (!hasAnimated.current && dotRef.current) {
-        hasAnimated.current = true;
-
-        gsap.to(dotRef.current, {
-          scale: 50,
-          duration: 1.5,
-          ease: "power4.inOut",
-          onComplete: onComplete, // show Hero after zoom
-        });
-
-        gsap.to(containerRef.current, {
-          opacity: 0,
-          delay: 1,
-          duration: 0.5,
-          ease: "power1.out",
-        });
-      }
-    };
-
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [onComplete]);
-
+const Intro: React.FC = () => {
   return (
-    <div
-      ref={containerRef}
-      className="flex items-center justify-center h-screen text-7xl font-bold bg-black text-white"
-    >
-      <span>Hi</span>
-      <div
-        ref={dotRef}
-        className="text-pink-500 ml-2"
-        style={{
-          transformOrigin: "center",
-        }}
-      >
-        .
+      <>
+      <div className='svg flex justify-center items-center fixed top-0 left-0 z-[100] w-full h-screen overflow-hidden'>
+          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="hiMask">
+      <rect width="400" height="200" fill="white"/>
+  
+      <text x="200" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="80" font-weight="300" text-anchor="middle" fill="black">Hi</text>
+    </mask>
+  </defs>
+  
+  <rect width="400" height="200" fill="#000000"/>
+  
+  <rect width="400" height="200" fill="black" mask="url(#hiMask)"/>
+</svg>
       </div>
-    </div>
+      </>
   );
-}
+};
+
+export default Intro;

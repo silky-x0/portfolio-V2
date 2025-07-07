@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "motion": "^12.23.0",
+    "motion-plus": "^1.4.1",
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

@@ -64,7 +64,7 @@ export default function ScatterText() {
             ref={containerRef}
         >
             <h1 className="scatter-h1 text-5xl md:text-7xl font-extrabold text-white tracking-tight drop-shadow-lg text-center">
-                Hey, I'm{" "}
+                Hey, I&apos;m{" "}
                 <span className="text-sky-400" >Akhilesh</span>
                 .
             </h1>

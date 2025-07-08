@@ -11,7 +11,7 @@ export default function Home() {
     <Intro onComplete={() => setShowIntro(false)} />
   ) : (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Hero />
     </>
   );

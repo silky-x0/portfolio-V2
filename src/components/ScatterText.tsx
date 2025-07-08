@@ -1,116 +1,99 @@
-"use client";
-
-import { animate, hover } from "motion";
-import { splitText } from "motion-plus";
-import { useMotionValue } from "motion/react";
-import { useEffect, useRef } from "react";
+"use client"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
 
 export default function ScatterText() {
-	const containerRef = useRef<HTMLDivElement>(null);
-	const velocityX = useMotionValue(0);
-	const velocityY = useMotionValue(0);
-	const prevEvent = useRef(0);
+  const containerRef = useRef<HTMLDivElement>(null)
+  const velocityX = useRef(0)
+  const velocityY = useRef(0)
+  const prevEvent = useRef(0)
 
-	useEffect(() => {
-		if (!containerRef.current) return;
+  useEffect(() => {
+    if (!containerRef.current) return
+    const textElement = containerRef.current.querySelector(".scatter-text") as HTMLElement
+    if (!textElement) return
 
-		const scatterElement = containerRef.current.querySelector(".scatter-h1");
-		if (!scatterElement) return;
+    // Simple text splitting - just split by characters
+    const text = textElement.textContent || ""
+    textElement.innerHTML = ""
+    const chars: HTMLElement[] = []
 
-		const { chars } = splitText(scatterElement);
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i]
+      const span = document.createElement("span")
 
-		const handlePointerMove = (event: PointerEvent) => {
-			const now = performance.now();
-			const timeSinceLastEvent = Math.max(
-				(now - prevEvent.current) / 1000,
-				0.001
-			); // Prevent division by zero
-			prevEvent.current = now;
+      if (char === " ") {
+        span.innerHTML = "&nbsp;"
+      } else {
+        span.textContent = char
+      }
 
-			// Smooth velocity calculation with bounds
-			const maxVelocity = 800;
-			const newVelX = Math.max(
-				-maxVelocity,
-				Math.min(maxVelocity, event.movementX / timeSinceLastEvent)
-			);
-			const newVelY = Math.max(
-				-maxVelocity,
-				Math.min(maxVelocity, event.movementY / timeSinceLastEvent)
-			);
+      span.style.display = "inline-block"
+      span.style.position = "relative"
 
-			velocityX.set(newVelX);
-			velocityY.set(newVelY);
-		};
+      textElement.appendChild(span)
+      chars.push(span)
+    }
 
-		document.addEventListener("pointermove", handlePointerMove);
+    const handlePointerMove = (event: PointerEvent) => {
+      const now = performance.now()
+      const timeSinceLastEvent = Math.max((now - prevEvent.current) / 1000, 0.001)
+      prevEvent.current = now
 
-		// Enhanced hover effect with better physics
-		hover(chars, (element) => {
-			const speed = Math.sqrt(
-				velocityX.get() * velocityX.get() + velocityY.get() * velocityY.get()
-			);
-			const angle = Math.atan2(velocityY.get(), velocityX.get());
-			const distance = Math.min(speed * 0.08, 50); // Adjusted multiplier and max distance
+      const maxVelocity = 800
+      velocityX.current = Math.max(-maxVelocity, Math.min(maxVelocity, event.movementX / timeSinceLastEvent))
+      velocityY.current = Math.max(-maxVelocity, Math.min(maxVelocity, event.movementY / timeSinceLastEvent))
+    }
 
-			// Add some randomness for more organic feel
-			const randomOffset = (Math.random() - 0.5) * 10;
-			const finalDistance = distance + randomOffset;
+    const handleCharHover = (char: HTMLElement) => {
+      const speed = Math.sqrt(velocityX.current * velocityX.current + velocityY.current * velocityY.current)
+      const angle = Math.atan2(velocityY.current, velocityX.current)
+      const distance = Math.min(speed * 0.08, 40)
 
-			animate(
-				element,
-				{
-					x: Math.cos(angle) * finalDistance,
-					y: Math.sin(angle) * finalDistance,
-					scale: 1.2,
-					color: "#06b6d4",
-					textShadow: "0 0 20px #06b6d4, 0 0 40px #0891b2",
-					filter: "brightness(1.3)",
-				},
-				{
-					type: "spring",
-					stiffness: 150,
-					damping: 20,
-					duration: 0.3,
-				}
-			).finished.then(() => {
-				animate(
-					element,
-					{
-						x: 0,
-						y: 0,
-						scale: 1,
-						color: "#ffffff",
-						textShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
-						filter: "brightness(1)",
-					},
-					{
-						duration: 0.8,
-						easing: "ease-out",
-					}
-				);
-			});
-		});
+      const randomOffset = (Math.random() - 0.5) * 8
+      const finalDistance = distance + randomOffset
+      const moveX = Math.cos(angle) * finalDistance
+      const moveY = Math.sin(angle) * finalDistance
 
-		return () => {
-			document.removeEventListener("pointermove", handlePointerMove);
-		};
-	}, [velocityX, velocityY]);
+      gsap.killTweensOf(char)
+      gsap.to(char, {
+        x: moveX,
+        y: moveY,
+        scale: 1.2,
+        duration: 0.3,
+        ease: "back.out(1.7)",
+        onComplete: () => {
+          gsap.to(char, {
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: "power2.out",
+          })
+        },
+      })
+    }
 
-	return (
-		<div
-			className='container flex justify-center items-center min-h-[50vh] select-none cursor-none'
-			ref={containerRef}
-		>
-			<h1 className='scatter-h1 text-6xl md:text-8xl font-black text-white tracking-tight text-center leading-tight'>
-				Creative{" "}
-				<span className='bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent'>
-					Developer
-				</span>
-				<br />
-				<span className='text-4xl md:text-5xl font-light text-gray-300'>
-					& Digital Artist
-				</span>
-			</h1>
-		</div>
-	);
+    // Add hover listeners
+    chars.forEach((char) => {
+      char.addEventListener("mouseenter", () => handleCharHover(char))
+    })
+
+    document.addEventListener("pointermove", handlePointerMove)
+
+    return () => {
+      document.removeEventListener("pointermove", handlePointerMove)
+      chars.forEach((char) => {
+        char.removeEventListener("mouseenter", () => handleCharHover(char))
+      })
+    }
+  }, [])
+
+  return (
+    <div className="flex justify-center items-center select-none" ref={containerRef}>
+      <h1 className="scatter-text text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white text-center leading-tight">
+        Backend Engineer
+      </h1>
+    </div>
+  )
 }

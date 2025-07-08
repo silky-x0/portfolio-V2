@@ -96,7 +96,7 @@ export default function Hero() {
           <div ref={skillsRef} className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-4xl mx-auto">
             {heroConfig.skills.map((skill, index) => (
               <span
-                key={skill}
+                key={index}
                 className="skill-tag px-3 py-1.5 sm:px-4 sm:py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm sm:text-base font-medium hover:bg-white/20 transition-all duration-300 cursor-default"
               >
                 {skill}

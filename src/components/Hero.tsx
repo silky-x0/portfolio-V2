@@ -64,15 +64,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div
-        ref={backgroundRef}
-        className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
-        style={{
-          backgroundSize: "400% 400%",
-        }}
-      />
-
+    
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%239C92AC%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40" />
 
@@ -80,7 +72,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Introduction */}
         <AnimatedText delay={0.2} className="mb-4">
-          <p className="text-purple-300 text-lg sm:text-xl font-medium">Hello, I'm {heroConfig.name}</p>
+          <p className="text-gray-400 text-lg sm:text-xl font-medium">Hello, I'm {heroConfig.name}</p>
         </AnimatedText>
 
         {/* Main Title with Scatter Animation */}

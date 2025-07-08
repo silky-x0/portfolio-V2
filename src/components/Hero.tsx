@@ -71,7 +71,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Introduction */}
         <AnimatedText delay={0.2} className="mb-4">
-          <p className="text-gray-400 text-lg sm:text-xl font-medium">Hello, I'm {heroConfig.name}</p>
+          <p className="text-gray-400 text-lg sm:text-xl font-medium">Hello, I&apos;m {heroConfig.name}</p>
         </AnimatedText>
 
         {/* Main Title with Scatter Animation */}

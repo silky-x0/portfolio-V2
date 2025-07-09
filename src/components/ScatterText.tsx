@@ -74,6 +74,7 @@ export default function ScatterText() {
 				x: moveX,
 				y: moveY,
 				scale: 1.2,
+				color: "#fca311",
 				duration: 0.3,
 				ease: "back.out(1.7)",
 				onComplete: () => {
@@ -81,6 +82,7 @@ export default function ScatterText() {
 						x: 0,
 						y: 0,
 						scale: 1,
+						color: "#fff",
 						duration: 0.6,
 						ease: "power2.out",
 					});

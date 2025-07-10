@@ -14,13 +14,13 @@ const heroConfig = {
 		"Passionate about building scalable, high-performance systems that power modern applications. Specialized in cloud architecture, microservices, and distributed systems.",
 	skills: [
 		"Node.js",
-		"Python",
+		"TypeScript",
+		"Next.js",
 		"AWS",
 		"Docker",
-		"Kubernetes",
+		"CI/CD",
 		"PostgreSQL",
 		"Redis",
-		"GraphQL",
 	],
 	resumeUrl: "/resume.pdf",
 	projectsUrl: "/projects",
@@ -188,7 +188,7 @@ export default function Hero() {
 								href={heroConfig.social.github}
 								target='_blank'
 								rel='noopener noreferrer'
-								className='text-[#e5e5e5] hover:text-[#fca311] transition-colors duration-300 transform hover:scale-140'
+								className='text-[#e5e5e5] hover:text-[#fca311] transition-colors duration-300 transform hover:scale-110'
 								aria-label='GitHub Profile'
 							>
 								<FaGithub className='h-6 w-6' />
@@ -215,7 +215,7 @@ export default function Hero() {
 
 				{/* Scroll Indicator */}
 				{showScrollIndicator && (
-					<div className='absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block'>
+					<div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block'>
 						<div className='w-6 h-10 border-2 border-[#fca311]/60 rounded-full flex justify-center'>
 							<div className='w-1 h-3 bg-[#fca311] rounded-full mt-2 animate-pulse' />
 						</div>

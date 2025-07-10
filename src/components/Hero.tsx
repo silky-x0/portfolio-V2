@@ -11,7 +11,7 @@ const heroConfig = {
 	name: "Akhilesh Tiwari",
 	title: "Junior Backend Engineer",
 	description:
-		"Passionate about building scalable, high-performance systems that power modern applications. Specialized in cloud architecture, microservices, and distributed systems.",
+		"I build scalable backend systems, design clean APIs, and work across cloud, databases, and distributed architecture to keep things fast and reliable.",
 	skills: [
 		"Node.js",
 		"TypeScript",

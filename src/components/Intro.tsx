@@ -215,7 +215,7 @@ const Intro: React.FC<IntroProps> = ({ onComplete }) => {
 				</div>
 
 				{/* Main text */}
-				<div className="intro-text mb-4">
+				<div className="intro-text mb-4" ref = {textRef}>
 					<h1 className="text-6xl md:text-8xl font-bold text-white mb-2">
 						<span className="bg-gradient-to-r from-[#fca311] via-[#ffffff] to-[#fca311] bg-clip-text text-transparent">
 							Hello

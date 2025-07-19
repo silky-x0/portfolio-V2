@@ -8,6 +8,7 @@ import ScatterText from "./ScatterText";
 import AnimatedText from "./AnimatedText";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import MorphingNavbar from "./MorphingNavbar";
 
 const heroConfig = {
 	name: "Akhilesh Tiwari",
@@ -321,17 +322,7 @@ export default function Hero() {
 				{/* Content Container */}
 				<div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
 					{/* Availability Indicator */}
-					<AnimatedText
-						delay={0.1}
-						className='mb-6'
-					>
-						<div className='inline-flex items-center gap-2 bg-[#14213d]/60 backdrop-blur-md rounded-full px-3 py-2 sm:px-4 sm:py-2 border border-[#fca311]/30'>
-							<div className='w-2 h-2 bg-[#fca311] rounded-full animate-pulse'></div>
-							<span className='text-xs sm:text-sm text-[#e5e5e5]'>
-								Available for work
-							</span>
-						</div>
-					</AnimatedText>
+					<MorphingNavbar />
 					{/* Introduction */}
 					<AnimatedText
 						delay={0.2}

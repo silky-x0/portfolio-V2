@@ -25,7 +25,7 @@ const heroConfig = {
 		"PostgreSQL",
 		"Redis",
 	],
-	resumeUrl: "/resume.pdf",
+	resumeUrl: "https://drive.google.com/file/d/1HqwrnKgU5e7Kn95Y903qS3AvQKvZM3yG/view",
 	projectsUrl: "/projects",
 	social: {
 		github: "https://github.com/silky-x0",

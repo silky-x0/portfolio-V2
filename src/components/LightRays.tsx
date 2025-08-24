@@ -308,7 +308,7 @@ void main() {
         const w = wCSS * dpr;
         const h = hCSS * dpr;
 
-        uniforms.iResolution.value = [w, h];
+        uniforms.iResolution.value = [w, h] as [number, number];
 
         const { anchor, dir } = getAnchorAndDir(raysOrigin, w, h);
         uniforms.rayPos.value = anchor;

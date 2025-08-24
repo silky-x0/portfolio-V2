@@ -1,17 +1,95 @@
-import React from "react";
-import AnimatedText from "./AnimatedText";
+"use client"
+
+import type React from "react"
+import { useState, useEffect } from "react"
+import AnimatedText from "./AnimatedText"
+import AnimatedContainer from "./AnimatedContainer"
+
 
 const MorphingNavbar: React.FC = () => {
-  return (
-    <AnimatedText delay={0.1} className="mb-6">
-      <div className="inline-flex items-center gap-2 bg-[#14213d]/60 backdrop-blur-md rounded-full px-3 py-2 sm:px-4 sm:py-2 border border-[#fca311]/30">
-        <div className="w-2 h-2 bg-[#fca311] rounded-full animate-pulse"></div>
-        <span className="text-xs sm:text-sm text-[#e5e5e5]">
-          Available for work
-        </span>
-      </div>
-    </AnimatedText>
-  );
-};
+  const [isScrolled, setIsScrolled] = useState(false)
 
-export default MorphingNavbar; 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  return (
+    <>
+      <div
+        className={`fixed top-5 z-50 transition-all duration-700 ease-in-out ${
+          isScrolled ? "left-8 right-8" : "left-1/2 transform -translate-x-1/2 w-auto"
+        }`}
+        style={{
+          transformOrigin: "center center",
+        }}
+      >
+        <div
+          className={`relative overflow-hidden transition-all duration-700 ease-in-out rounded-full backdrop-blur-md border border-[#fca311]/30 ${
+            isScrolled ? "bg-gradient-to-b from-black/70 to-black/10 p-4" : "bg-[#14213d]/60 px-3 py-2 sm:px-4 sm:py-2"
+          }`}
+          style={{
+            transformOrigin: "center center",
+          }}
+        >
+          <AnimatedContainer delay={0.2}>
+            <div
+              className={`transition-all duration-500 ease-in-out ${
+                isScrolled ? "opacity-0 scale-95 -translate-y-2" : "opacity-100 scale-100"
+              }`}
+            >
+              <AnimatedText delay={0.4}>
+                <div className="inline-flex items-center gap-2">
+                  <div className="w-2 h-2 bg-[#fca311] rounded-full animate-pulse"></div>
+                  <span className="text-xs sm:text-sm text-[#e5e5e5] whitespace-nowrap">Available for work</span>
+                </div>
+              </AnimatedText>
+            </div>
+          </AnimatedContainer>
+
+          <div
+            className={`absolute inset-0 transition-all duration-500 ease-in-out ${
+              isScrolled ? "opacity-100 scale-100" : "opacity-0 scale-95 translate-y-2"
+            }`}
+          >
+          
+            <div className="max-w-6xl mx-auto flex justify-between items-center h-full px-4">
+              <div className="text-white font-medium text-2xl" style={{ fontFamily: "'Migae', sans-serif" }}>
+                Akhil.
+              </div>
+              <nav className={`transition-all duration-300 ${isScrolled ? "opacity-100" : "opacity-0"}`}>
+                <ul className="flex space-x-4">
+                  <li>
+                    <a href="#home" className="text-gray-300 hover:text-white transition-colors duration-200">
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#about" className="text-gray-300 hover:text-white transition-colors duration-200">
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#projects" className="text-gray-300 hover:text-white transition-colors duration-200">
+                      Projects
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#contact" className="text-gray-300 hover:text-white transition-colors duration-200">
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default MorphingNavbar

@@ -1,27 +1,19 @@
-"use client";
-// import { useState } from "react";
-import Hero from "@/components/Hero";
-// import Intro from "@/components/Intro";
-import ExperiencePage from "./experiance/page";
+'use client';
+
+import Hero from '@/components/Hero';
+import ExperiencePage from './experiance/page';
+import Contact from './contact/page';
+
 export default function Home() {
-	// const [showIntro, setShowIntro] = useState(true);
-
-	//   return showIntro ? (
-	//     <Intro onComplete={() => setShowIntro(false)} />
-	//   ) : (
-	//     <>
-	//       {/* <Navbar /> */}
-	//       <Hero />
-	//       <ExperiencePage />
-	//     </>
-	//   );
-	// }
-
-	return (
-		<>
-			{/* <Navbar /> */}
-			<Hero />
-			<ExperiencePage />
-		</>
-	);
+  return (
+    <div>
+      <div className="sticky top-0 z-0">
+        <Hero />
+      </div>
+      <div className="relative z-10 bg-black">
+        <ExperiencePage />
+        <Contact />
+      </div>
+    </div>
+  );
 }

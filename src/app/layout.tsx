@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "../styles/globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Akhilesh",
@@ -11,7 +14,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang='en'>
-			<body className='bg-black text-white scroll-smooth'>
+			<body className={`${inter.className} bg-black text-white scroll-smooth`}>
 				<main className='min-h-screen'>{children}</main>
 			</body>
 		</html>

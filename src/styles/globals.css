@@ -119,11 +119,3 @@
   font-style: normal;
   font-display: swap;
 }
-
-@font-face {
-  font-family: 'Exthing';
-  src: url('/fonts/Exthing-1Gox2.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}

@@ -6,7 +6,6 @@ import { gsap } from "gsap";
 import ScatterText from "./ScatterText";
 import AnimatedText from "./AnimatedText";
 import { Button } from "@/components/button";
-import MorphingNavbar from "./MorphingNavbar";
 import LightRays from "./LightRays";
 // import DotGrid from "./DotGrid";
 

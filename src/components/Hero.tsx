@@ -97,8 +97,7 @@ export default function Hero() {
 				<section className='relative min-h-screen flex items-center justify-center overflow-hidden'>
 					{/* Content Container */}
 					<div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-						{/* Availability Indicator */}
-						<MorphingNavbar />
+						
 						{/* Introduction */}
 						<AnimatedText
 							delay={0.2}

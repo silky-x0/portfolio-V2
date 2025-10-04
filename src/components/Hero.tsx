@@ -1,41 +1,10 @@
 "use client";
 
 export default function Home() {
-	return (
-		<div className='min-h-screen bg-zinc-900 flex flex-col relative overflow-hidden'>
-			{/* Header with logo and navigation */}
-			<header className='flex justify-between items-center pt-8 px-8 relative z-10'>
-				<div className='text-orange-500 font-black text-2xl tracking-wider'>
-					Akhil.
-				</div>
-				<nav className='flex gap-8'>
-					<a
-						href='#'
-						className='text-gray-400 hover:text-orange-500/70 transition-colors font-medium'
-					>
-						About
-					</a>
-					<a
-						href='#'
-						className='text-gray-400 hover:text-orange-500/70 transition-colors font-medium'
-					>
-						Services
-					</a>
-					<a
-						href='#'
-						className='text-gray-400 hover:text-orange-500/70 transition-colors font-medium'
-					>
-						Work
-					</a>
-					<a
-						href='#'
-						className='text-gray-400 hover:text-orange-500/70 transition-colors font-medium'
-					>
-						Contact
-					</a>
-				</nav>
-			</header>
+	
 
+	return (
+		<div>
 			{/* Main content centered */}
 			<main className='flex items-center justify-center px-8 pt-[100px] pb-[150px] relative z-10'>
 				<div className='text-center max-w-6xl'>

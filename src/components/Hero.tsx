@@ -37,9 +37,9 @@ export default function Home() {
 			</header>
 
 			{/* Main content centered */}
-			<main className='flex-1 flex items-center justify-center px-8 relative z-10'>
+			<main className='flex items-center justify-center px-8 pt-[100px] pb-[150px] relative z-10'>
 				<div className='text-center max-w-6xl'>
-					<h1 className='font-black text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight'>
+					<h1 className='font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight'>
 						<span className='text-[#FFF6E8]'>DRIVEN BY </span>
 						<span className='text-yellow-400'>SYSTEM DESIGN</span>
 						<span className='text-yellow-400'>,</span>
@@ -60,9 +60,9 @@ export default function Home() {
 			</main>
 
 			{/* Scrolling banner at bottom */}
-			<div className='bg-orange-500 py-4 overflow-hidden relative transform -rotate-3 origin-center'>
+			<div className='bg-orange-500 py-7 px overflow-hidden relative transform -rotate-3 origin-center'>
 				<div className='flex animate-scroll whitespace-nowrap'>
-					<div className='flex items-center gap-8 text-white font-bold text-base sm:text-lg tracking-wider'>
+					<div className='flex items-center gap-8 text-white font-bold text-4xl lg:text-7xl tracking-wider'>
 						<span>RECTANGLE ARTIST</span>
 						<span>•</span>
 						<span>TECH ENTHUSIAST</span>

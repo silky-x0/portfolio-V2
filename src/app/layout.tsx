@@ -14,7 +14,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang='en'>
-			<body className={`${inter.className} bg-black text-white scroll-smooth`}>
+			<body suppressHydrationWarning={true} className={`${inter.className} bg-black text-white scroll-smooth`}>
 				<main className='min-h-screen'>{children}</main>
 			</body>
 		</html>

@@ -23,11 +23,12 @@ const MorphingNavbar: React.FC = () => {
   return (
     <>
       <div
-        className={`fixed top-5 z-50 transition-all duration-700 ease-in-out ${
-          isScrolled ? "left-4 right-4 md:left-8 md:right-8" : "left-1/2 transform -translate-x-1/2 w-auto"
+        className={`fixed top-5 z-50 transition-all duration-700 ease-in-out left-1/2 -translate-x-1/2 ${
+          isScrolled ? "w-[calc(100%-2rem)] md:w-[calc(100%-4rem)]" : "w-auto"
         }`}
         style={{
           transformOrigin: "center center",
+          willChange: "width"
         }}
       >
         <div

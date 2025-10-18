@@ -25,7 +25,7 @@ const heroConfig = {
 		"Redis",
 	],
 	resumeUrl:
-		"https://drive.google.com/file/d/1HqwrnKgU5e7Kn95Y903qS3AvQKvZM3yG/view",
+		"https://drive.google.com/file/d/14RTDuS4q_Srh0Kfz59ZZ4tRHhmnPtQBW/view?usp=sharing",
 	projectsUrl: "/projects",
 	social: {
 		github: "https://github.com/silky-x0",

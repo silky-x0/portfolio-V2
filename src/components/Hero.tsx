@@ -83,7 +83,7 @@ export default function Hero() {
 		}
 
 		const timer = setTimeout(() => setShowScrollIndicator(true), 1800); // 1.8s delay
-		return () => clearTimeout(timer);
+		return clearTimeout(timer);
 	}, []);
 
 	return (

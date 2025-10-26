@@ -24,7 +24,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang='en' suppressHydrationWarning>
-			<body suppressHydrationWarning={true} className={`${inter.variable} ${migae.variable} font-sans bg-black text-white scroll-smooth`}>
+			<body suppressHydrationWarning={true} className={`${inter.variable} ${migae.variable} font-sans bg-background text-foreground scroll-smooth`}>
 				<ThemeProvider
           attribute="class"
           defaultTheme="dark"

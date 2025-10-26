@@ -7,11 +7,11 @@ const timelineData = experienceConfig.map((experience) => ({
   title: experience.title,
   content: (
     <div>
-      <h3 className="text-lg font-semibold text-white mb-1">
+      <h3 className="text-lg font-semibold text-foreground mb-1">
         {experience.company}
       </h3>
-      <p className="text-sm text-neutral-400 mb-4">{experience.duration}</p>
-      <ul className="space-y-2 list-disc list-inside text-neutral-300">
+      <p className="text-sm text-muted-foreground mb-4">{experience.duration}</p>
+      <ul className="space-y-2 list-disc list-inside text-muted-foreground">
         {experience.responsibilities.map((task, idx) => (
           <li key={idx}>{task}</li>
         ))}
@@ -22,7 +22,7 @@ const timelineData = experienceConfig.map((experience) => ({
 
 export default function ExperiencePage() {
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-background">
       <Timeline data={timelineData} />
     </main>
   );

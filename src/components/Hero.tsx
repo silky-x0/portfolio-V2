@@ -107,7 +107,7 @@ export default function Hero() {
 							delay={0.2}
 							className='mb-4'
 						>
-							<p className='text-[#e5e5e5] text-lg sm:text-xl font-medium'>
+							<p className='text-muted-foreground'>
 								Hello, I&apos;m {heroConfig.name}
 							</p>
 						</AnimatedText>
@@ -122,7 +122,7 @@ export default function Hero() {
 							delay={0.6}
 							className='mb-8'
 						>
-							<h2 className='text-xl sm:text-2xl md:text-3xl text-[#ffffff] font-light'>
+							<h2 className='text-xl sm:text-2xl md:text-3xl text-foreground'>
 								{heroConfig.title}
 							</h2>
 						</AnimatedText>
@@ -132,7 +132,7 @@ export default function Hero() {
 							delay={0.8}
 							className='mb-10'
 						>
-							<p className='text-[#e5e5e5] text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed'>
+							<p className='text-muted-foreground text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed'>
 								{heroConfig.description}
 							</p>
 						</AnimatedText>
@@ -149,7 +149,7 @@ export default function Hero() {
 								{heroConfig.skills.map((skill, index) => (
 									<span
 										key={index}
-										className='skill-tag px-3 py-1.5 sm:px-4 sm:py-2 bg-[#14213d]/80 backdrop-blur-sm border border-[#fca311]/30 rounded-full text-[#ffffff] text-sm sm:text-base font-medium hover:bg-[#fca311]/20 hover:border-[#fca311] transition-all duration-300 cursor-default'
+										className='skill-tag px-3 py-1.5 sm:px-4 sm:py-2 bg-secondary/80 backdrop-blur-sm border border-accent/30 rounded-full text-secondary-foreground text-sm sm:text-base font-medium hover:bg-accent/20 hover:border-accent transition-all duration-300 cursor-default'
 									>
 										{skill}
 									</span>
@@ -165,7 +165,7 @@ export default function Hero() {
 							<div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
 								<Button
 									size='lg'
-									className='bg-[#fca311] hover:bg-[#fca311]/80 text-[#000000] px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 group shadow-lg shadow-[#fca311]/25'
+									className='bg-primary hover:bg-primary/80 text-primary-foreground px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 group shadow-lg shadow-primary/25'
 									onClick={() => window.open(heroConfig.projectsUrl, "_blank")}
 								>
 									View My Projects
@@ -175,7 +175,7 @@ export default function Hero() {
 								<Button
 									variant='outline'
 									size='lg'
-									className='border-[#e5e5e5]/50 hover:text-[#ffffff] hover:bg-[#fca311]/20 hover:border-[#fca311] px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 group bg-transparent'
+									className='border-border/50 hover:text-foreground hover:bg-accent/20 hover:border-accent px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 group bg-transparent'
 									onClick={() => window.open(heroConfig.resumeUrl, "_blank")}
 								>
 									<Download className='mr-2 h-5 w-5 group-hover:scale-110 transition-transform' />
@@ -191,8 +191,7 @@ export default function Hero() {
 									href={heroConfig.social.github}
 									target='_blank'
 									rel='noopener noreferrer'
-									className='text-[#e5e5e5] hover:text-[#fca311] transition-colors duration-300 transform hover:scale-110'
-									aria-label='GitHub Profile'
+className='text-muted-foreground hover:text-accent transition-colors duration-300 transform hover:scale-110'
 								>
 									<FaGithub className='h-6 w-6' />
 								</a>
@@ -219,8 +218,8 @@ export default function Hero() {
 					{/* Scroll Indicator */}
 					{showScrollIndicator && (
 						<div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block'>
-							<div className='w-6 h-10 border-2 border-[#fca311]/60 rounded-full flex justify-center'>
-								<div className='w-1 h-3 bg-[#fca311] rounded-full mt-2 animate-pulse' />
+							<div className='w-6 h-10 border-2 border-accent/60 rounded-full flex justify-center'>
+								<div className='w-1 h-3 bg-accent rounded-full mt-2 animate-pulse' />
 							</div>
 						</div>
 					)}

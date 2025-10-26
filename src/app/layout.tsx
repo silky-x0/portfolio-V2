@@ -1,8 +1,16 @@
+
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "../styles/globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
+const migae = localFont({
+  src: "../../public/fonts/MigaeSemibold-3zd2M.otf",
+  variable: "--font-migae",
+});
 
 export const metadata: Metadata = {
 	title: "Akhilesh",
@@ -14,9 +22,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang='en'>
-			<body suppressHydrationWarning={true} className={`${inter.className} bg-black text-white scroll-smooth`}>
+			<body suppressHydrationWarning={true} className={`${inter.variable} ${migae.variable} font-sans bg-black text-white scroll-smooth`}>
 				<main className='min-h-screen'>{children}</main>
 			</body>
 		</html>
 	);
 }
+

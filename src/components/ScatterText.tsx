@@ -111,8 +111,7 @@ export default function ScatterText() {
 			ref={containerRef}
 		>
 			<h1
-				className='scatter-text text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-white text-center leading-tight'
-				style={{ fontFamily: "'Migae', sans-serif" }}
+				className='scatter-text text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-white text-center leading-tight font-migae'
 			>
 				Backend Engineer
 			</h1>

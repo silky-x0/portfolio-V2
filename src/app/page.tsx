@@ -3,12 +3,20 @@
 import Hero from '@/components/Hero';
 import ExperiencePage from './experiance/page';
 import Contact from './contact/page';
-import MorphingNavbar from '@/components/MorphingNavbar';
+import { NavBar } from "@/components/ui/tubelight-navbar";
+import { House, User, Folder, Mail } from "lucide-react";
+
+const navItems = [
+  { name: "Home", url: "#home", icon: "House" },
+  { name: "About", url: "#about", icon: "User" },
+  { name: "Projects", url: "#projects", icon: "Folder" },
+  { name: "Contact", url: "#contact", icon: "Mail" },
+];
+
 export default function Home() {
   return (
     <div>
-      
-      <MorphingNavbar />
+      <NavBar items={navItems} />
       <div className="sticky top-0 z-0">
         <Hero />
       </div>

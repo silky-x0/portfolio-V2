@@ -17,13 +17,22 @@ export const metadata: Metadata = {
 	description: "A Portolio App",
 };
 
+import { ThemeProvider } from "@/components/ThemeProvider";
+
 export default function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang='en'>
 			<body suppressHydrationWarning={true} className={`${inter.variable} ${migae.variable} font-sans bg-black text-white scroll-smooth`}>
-				<main className='min-h-screen'>{children}</main>
+				<ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+					{children}
+				</ThemeProvider>
 			</body>
 		</html>
 	);

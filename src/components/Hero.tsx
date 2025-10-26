@@ -43,6 +43,9 @@ function MinimalBg() {
 	);
 }
 
+
+import { ThemeSwitcher } from "./ThemeSwitcher";
+
 export default function Hero() {
 	const backgroundRef = useRef<HTMLDivElement>(null);
 	const skillsRef = useRef<HTMLDivElement>(null);
@@ -88,7 +91,9 @@ export default function Hero() {
 
 	return (
 		<>  
-			
+			<div className="absolute top-4 right-4 z-20">
+				<ThemeSwitcher />
+			</div>
 			<div className='min-h-screen relative'>
 				{/* MinimalBg Background */}
 				<MinimalBg />

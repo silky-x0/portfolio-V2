@@ -60,7 +60,7 @@ const MorphingNavbar: React.FC = () => {
             }`}
           >
             <div className="max-w-6xl mx-auto flex justify-between items-center h-full px-4">
-              <div className="text-white font-medium text-2xl" style={{ fontFamily: "'Migae', sans-serif" }}>
+              <div className="text-white font-medium text-2xl font-migae">
                 Akhil.
               </div>
               {/* Desktop Navigation */}

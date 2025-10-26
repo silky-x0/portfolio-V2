@@ -10,7 +10,7 @@ export default function Contact() {
       </div>
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="max-w-md w-full p-8 bg-black/50 backdrop-blur-md rounded-2xl border border-white/10">
-          <h1 className="text-4xl font-bold text-white text-center mb-8" style={{ fontFamily: "'Migae', sans-serif" }}>Contact Me</h1>
+          <h1 className="text-4xl font-bold text-white text-center mb-8 font-migae">Contact Me</h1>
           <form className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-300">Name</label>

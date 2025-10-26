@@ -7,6 +7,7 @@ import MorphingNavbar from '@/components/MorphingNavbar';
 export default function Home() {
   return (
     <div>
+      
       <MorphingNavbar />
       <div className="sticky top-0 z-0">
         <Hero />

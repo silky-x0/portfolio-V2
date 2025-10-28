@@ -7,6 +7,7 @@ import ScatterText from "./ScatterText";
 import AnimatedText from "./AnimatedText";
 import { Button } from "@/components/button";
 import LightRays from "./LightRays";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 // import DotGrid from "./DotGrid";
 
 const heroConfig = {
@@ -36,15 +37,13 @@ const heroConfig = {
 
 function MinimalBg() {
 	return (
-		<div className='absolute inset-0 w-full h-full overflow-hidden'>
+		<div className='absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none'>
 			{/* Lightrays Bg */}
 			<LightRays />
 		</div>
 	);
 }
 
-
-import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export default function Hero() {
 	const backgroundRef = useRef<HTMLDivElement>(null);
@@ -91,7 +90,7 @@ export default function Hero() {
 
 	return (
 		<>  
-			<div className="absolute top-4 right-4 z-20">
+			<div className="absolute top-4 right-4 z-30">
 				<ThemeSwitcher />
 			</div>
 			<div className='min-h-screen relative'>
@@ -100,14 +99,14 @@ export default function Hero() {
 
 				<section className='relative min-h-screen flex items-center justify-center overflow-hidden'>
 					{/* Content Container */}
-					<div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
+					<div className='relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
 						
 						{/* Introduction */}
 						<AnimatedText
 							delay={0.2}
 							className='mb-4'
 						>
-							<p className='text-muted-foreground'>
+							<p className='text-foreground'>
 								Hello, I&apos;m {heroConfig.name}
 							</p>
 						</AnimatedText>
@@ -158,15 +157,15 @@ export default function Hero() {
 						</AnimatedText>
 
 						{/* Call to Action Buttons */}
-						<AnimatedText
-							delay={1.2}
-							className='mb-12'
-						>
+						<div className='mb-12'>
 							<div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
 								<Button
 									size='lg'
-									className='bg-primary hover:bg-primary/80 text-primary-foreground px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 group shadow-lg shadow-primary/25'
-									onClick={() => window.open(heroConfig.projectsUrl, "_blank")}
+									className='bg-primary hover:bg-primary/80 text-primary-foreground px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 group shadow-lg shadow-primary/25 cursor-pointer'
+									onClick={() => {
+										console.log('Projects button clicked!');
+										window.open(heroConfig.projectsUrl, "_blank");
+									}}
 								>
 									View My Projects
 									<ArrowRight className='ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform' />
@@ -175,49 +174,51 @@ export default function Hero() {
 								<Button
 									variant='outline'
 									size='lg'
-									className='border-border/50 hover:text-foreground hover:bg-accent/20 hover:border-accent px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 group bg-transparent'
-									onClick={() => window.open(heroConfig.resumeUrl, "_blank")}
+									className='border-border/50 hover:text-foreground hover:bg-accent/20 hover:border-accent px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 group bg-transparent cursor-pointer'
+									onClick={() => {
+										console.log('Resume button clicked!');
+										window.open(heroConfig.resumeUrl, "_blank");
+									}}
 								>
 									<Download className='mr-2 h-5 w-5 group-hover:scale-110 transition-transform' />
 									Download Resume
 								</Button>
 							</div>
-						</AnimatedText>
+						</div>
 
 						{/* Social Links */}
-						<AnimatedText delay={1.4}>
-							<div className='flex justify-center space-x-6'>
-								<a
-									href={heroConfig.social.github}
-									target='_blank'
-									rel='noopener noreferrer'
-className='text-muted-foreground hover:text-accent transition-colors duration-300 transform hover:scale-110'
-								>
-									<FaGithub className='h-6 w-6' />
-								</a>
-								<a
-									href={heroConfig.social.linkedin}
-									target='_blank'
-									rel='noopener noreferrer'
-									className='text-[#e5e5e5] hover:text-[#fca311] transition-colors duration-300 transform hover:scale-110'
-									aria-label='LinkedIn Profile'
-								>
-									<FaLinkedin className='h-6 w-6' />
-								</a>
-								<a
-									href={`mailto:${heroConfig.social.email}`}
-									className='text-[#e5e5e5] hover:text-[#fca311] transition-colors duration-300 transform hover:scale-110'
-									aria-label='Email Contact'
-								>
-									<Mail className='h-6 w-6' />
-								</a>
-							</div>
-						</AnimatedText>
+						<div className='flex justify-center space-x-6'>
+							<a
+								href={heroConfig.social.github}
+								target='_blank'
+								rel='noopener noreferrer'
+								className='text-muted-foreground hover:text-accent transition-colors duration-300 transform hover:scale-110 cursor-pointer'
+								onClick={() => console.log('GitHub link clicked!')}
+							>
+								<FaGithub className='h-6 w-6' />
+							</a>
+							<a
+								href={heroConfig.social.linkedin}
+								target='_blank'
+								rel='noopener noreferrer'
+								className='text-[#e5e5e5] hover:text-[#fca311] transition-colors duration-300 transform hover:scale-110 cursor-pointer'
+								aria-label='LinkedIn Profile'
+							>
+								<FaLinkedin className='h-6 w-6' />
+							</a>
+							<a
+								href={`mailto:${heroConfig.social.email}`}
+								className='text-[#e5e5e5] hover:text-[#fca311] transition-colors duration-300 transform hover:scale-110 cursor-pointer'
+								aria-label='Email Contact'
+							>
+								<Mail className='h-6 w-6' />
+							</a>
+						</div>
 					</div>
 
 					{/* Scroll Indicator */}
 					{showScrollIndicator && (
-						<div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block'>
+						<div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block z-20'>
 							<div className='w-6 h-10 border-2 border-accent/60 rounded-full flex justify-center'>
 								<div className='w-1 h-3 bg-accent rounded-full mt-2 animate-pulse' />
 							</div>

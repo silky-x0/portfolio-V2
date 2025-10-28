@@ -4,13 +4,13 @@ import Hero from '@/components/Hero';
 import ExperiencePage from './experiance/page';
 import Contact from './contact/page';
 import { NavBar } from "@/components/ui/tubelight-navbar";
-import { House, User, Folder, Mail } from "lucide-react";
+import { Home as HomeIcon, User, Folder, Mail } from "lucide-react";
 
 const navItems = [
-  { name: "Home", url: "#home", icon: "House" },
-  { name: "About", url: "#about", icon: "User" },
-  { name: "Projects", url: "#projects", icon: "Folder" },
-  { name: "Contact", url: "#contact", icon: "Mail" },
+  { name: "Home", url: "/", icon: HomeIcon },
+  { name: "About", url: "/about", icon: User },
+  { name: "Projects", url: "/projects", icon: Folder },
+  { name: "Contact", url: "/contact", icon: Mail },
 ];
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
       <div className="sticky top-0 z-0">
         <Hero />
       </div>
-      <div className="relative z-10 bg-black">
+      <div className="relative z-10 bg-black pointer-events-none">
         <ExperiencePage />
         <Contact />
       </div>

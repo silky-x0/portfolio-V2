@@ -1,6 +1,5 @@
 "use client";
 import {
-  useMotionValueEvent,
   useScroll,
   useTransform,
   motion,
@@ -42,7 +41,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           Professional Journey
         </h2>
         <p className="text-sm md:text-base">
-          Here&apos;s What I've been into.
+          Here&apos;s What I&apos;ve been into.
         </p>
       </div>
 

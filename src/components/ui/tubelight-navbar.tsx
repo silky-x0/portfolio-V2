@@ -3,57 +3,34 @@
 import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { Home, User, Folder, Mail } from "lucide-react";
+import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface NavItem {
-  name: string;
-  url: string;
-  icon: string;
+  name: string
+  url: string
+  icon: LucideIcon
 }
-
-const icons: { [key: string]: React.ElementType } = {
-  Home,
-  User,
-  Folder,
-  Mail,
-};
-
-const IconRenderer = ({ iconName, ...props }: { iconName: string; [key: string]: any }) => {
-  const Icon = icons[iconName];
-  return Icon ? <Icon {...props} /> : null;
-};
 
 interface NavBarProps {
-  items: NavItem[];
-  className?: string;
-  isFixed?: boolean;
+  items: NavItem[]
+  className?: string
 }
 
-export function NavBar({ items, className, isFixed = true }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+export function NavBar({ items, className }: NavBarProps) {
+  const [activeTab, setActiveTab] = useState(items[0].name)
 
   return (
     <div
       className={cn(
-        isFixed && "fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6",
-        className
+        "fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6",
+        className,
       )}
     >
       <div className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
         {items.map((item) => {
-          const isActive = activeTab === item.name;
+          const Icon = item.icon
+          const isActive = activeTab === item.name
 
           return (
             <Link
@@ -63,12 +40,12 @@ export function NavBar({ items, className, isFixed = true }: NavBarProps) {
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",
-                isActive && "bg-muted text-primary"
+                isActive && "bg-muted text-primary",
               )}
             >
               <span className="hidden md:inline">{item.name}</span>
               <span className="md:hidden">
-                <IconRenderer iconName={item.icon} size={18} strokeWidth={2.5} />
+                <Icon size={18} strokeWidth={2.5} />
               </span>
               {isActive && (
                 <motion.div
@@ -89,9 +66,9 @@ export function NavBar({ items, className, isFixed = true }: NavBarProps) {
                 </motion.div>
               )}
             </Link>
-          );
+          )
         })}
       </div>
     </div>
-  );
+  )
 }

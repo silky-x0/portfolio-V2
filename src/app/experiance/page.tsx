@@ -22,7 +22,7 @@ const timelineData = experienceConfig.map((experience) => ({
 
 export default function ExperiencePage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background pointer-events-auto">
       <Timeline data={timelineData} />
     </main>
   );

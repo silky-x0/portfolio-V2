@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { useTheme } from "next-themes";
 
 export default function ScatterText() {
+	const { theme } = useTheme();
 	const containerRef = useRef<HTMLDivElement>(null);
 	const velocityX = useRef(0);
 	const velocityY = useRef(0);
@@ -82,7 +84,7 @@ export default function ScatterText() {
 						x: 0,
 						y: 0,
 						scale: 1,
-						color: "#fff",
+						color: theme === "dark" ? "#fff" : "#000",
 						duration: 0.6,
 						ease: "power2.out",
 					});
@@ -103,7 +105,7 @@ export default function ScatterText() {
 				char.removeEventListener("mouseenter", () => handleCharHover(char));
 			});
 		};
-	}, []);
+	}, [theme]);
 
 	return (
 		<div
@@ -111,7 +113,7 @@ export default function ScatterText() {
 			ref={containerRef}
 		>
 			<h1
-				className='scatter-text text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-white text-center leading-tight font-migae'
+				className='scatter-text text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium text-gray-900 dark:text-gray-100 text-center leading-tight font-migae'
 			>
 				Backend Engineer
 			</h1>

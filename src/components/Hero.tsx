@@ -8,6 +8,7 @@ import AnimatedText from "./AnimatedText";
 import { Button } from "@/components/button";
 import LightRays from "./LightRays";
 import { ThemeSwitcher } from "./ThemeSwitcher";
+import CurvedLoop from "./CurvedLoop";
 // import DotGrid from "./DotGrid";
 
 const heroConfig = {
@@ -47,7 +48,6 @@ function MinimalBg() {
 
 export default function Hero() {
 	const backgroundRef = useRef<HTMLDivElement>(null);
-	const skillsRef = useRef<HTMLDivElement>(null);
 	const [showScrollIndicator, setShowScrollIndicator] = useState(false);
 
 	useEffect(() => {
@@ -62,31 +62,11 @@ export default function Hero() {
 			});
 		}
 
-		// Staggered skill tags animation
-		if (skillsRef.current) {
-			const skillTags = skillsRef.current.querySelectorAll(".skill-tag");
-			gsap.fromTo(
-				skillTags,
-				{
-					opacity: 0,
-					scale: 0.8,
-					y: 20,
-				},
-				{
-					opacity: 1,
-					scale: 1,
-					y: 0,
-					duration: 0.5,
-					stagger: 0.1,
-					delay: 1.5,
-					ease: "back.out(1.7)",
-				}
-			);
-		}
-
 		const timer = setTimeout(() => setShowScrollIndicator(true), 1800); // 1.8s delay
 		return () => clearTimeout(timer);
 	}, []);
+
+  const skillsMarqueeText = "   "+ heroConfig.skills.join("    •    ") + "   •";
 
 	return (
 		<>  
@@ -137,24 +117,15 @@ export default function Hero() {
 						</AnimatedText>
 
 						{/* Skills Tags */}
-						<AnimatedText
-							delay={1.0}
-							className='mb-12'
-						>
-							<div
-								ref={skillsRef}
-								className='flex flex-wrap justify-center gap-2 sm:gap-3 max-w-4xl mx-auto'
-							>
-								{heroConfig.skills.map((skill, index) => (
-									<span
-										key={index}
-										className='skill-tag px-3 py-1.5 sm:px-4 sm:py-2 bg-secondary backdrop-blur-md border border-accent/30 rounded-full text-secondary-foreground text-sm sm:text-base font-medium hover:text-primary hover:border-primary transition-all duration-300 cursor-default'
-									>
-										{skill}
-									</span>
-								))}
-							</div>
-						</AnimatedText>
+						<div className='mb-12'>
+                <CurvedLoop
+                    marqueeText={skillsMarqueeText}
+                    speed={1}
+                    curveAmount={0} // Adjust as needed
+                    className='text-foreground'
+                    interactive={true}
+                />
+            </div>
 
 						{/* Call to Action Buttons */}
 						<div className='mb-12'>

@@ -10,6 +10,13 @@ interface GridDistortionProps {
   className?: string;
 }
 
+interface Uniforms {
+  time: { value: number };
+  resolution: { value: THREE.Vector4 };
+  uTexture: { value: THREE.Texture | null };
+  uDataTexture: { value: THREE.DataTexture | null };
+}
+
 const vertexShader = `
 uniform float time;
 varying vec2 vUv;
@@ -51,7 +58,7 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
   const imageAspectRef = useRef<number>(1);
   const animationIdRef = useRef<number | null>(null);
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
-  const uniformsRef = useRef<any>(null);
+  const uniformsRef = useRef<Uniforms | null>(null);
   const mouseStateRef = useRef({ x: 0, y: 0, prevX: 0, prevY: 0, vX: 0, vY: 0 });
 
   const handleResize = useCallback(() => {
@@ -96,6 +103,8 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
     const uniforms = uniformsRef.current;
     const dataTexture = uniforms.uDataTexture.value;
     const mouseState = mouseStateRef.current;
+
+    if (!dataTexture) return;
 
     uniforms.time.value += 0.05;
 

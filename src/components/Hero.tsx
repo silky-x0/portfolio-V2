@@ -37,7 +37,7 @@ const heroConfig = {
 
 function MinimalBg() {
 	return (
-		<div className='absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none'>
+		<div className='absolute inset-0 w-full h-full overflow-hidden'>
 			{/* Lightrays Bg */}
 			<LightRays />
 		</div>
@@ -85,7 +85,7 @@ export default function Hero() {
 		}
 
 		const timer = setTimeout(() => setShowScrollIndicator(true), 1800); // 1.8s delay
-		return clearTimeout(timer);
+		return () => clearTimeout(timer);
 	}, []);
 
 	return (
@@ -148,7 +148,7 @@ export default function Hero() {
 								{heroConfig.skills.map((skill, index) => (
 									<span
 										key={index}
-										className='skill-tag px-3 py-1.5 sm:px-4 sm:py-2 bg-secondary/80 backdrop-blur-sm border border-accent/30 rounded-full text-secondary-foreground text-sm sm:text-base font-medium hover:bg-accent/20 hover:border-accent transition-all duration-300 cursor-default'
+										className='skill-tag px-3 py-1.5 sm:px-4 sm:py-2 bg-secondary backdrop-blur-md border border-accent/30 rounded-full text-secondary-foreground text-sm sm:text-base font-medium hover:text-primary hover:border-primary transition-all duration-300 cursor-default'
 									>
 										{skill}
 									</span>
@@ -176,7 +176,6 @@ export default function Hero() {
 									size='lg'
 									className='border-border/50 hover:text-foreground hover:bg-accent/20 hover:border-accent px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 group bg-transparent cursor-pointer'
 									onClick={() => {
-										console.log('Resume button clicked!');
 										window.open(heroConfig.resumeUrl, "_blank");
 									}}
 								>
@@ -192,8 +191,8 @@ export default function Hero() {
 								href={heroConfig.social.github}
 								target='_blank'
 								rel='noopener noreferrer'
-								className='text-muted-foreground hover:text-accent transition-colors duration-300 transform hover:scale-110 cursor-pointer'
-								onClick={() => console.log('GitHub link clicked!')}
+								className='text-foreground hover:text-primary transition-colors duration-300 transform hover:scale-110 cursor-pointer'
+								aria-label='GitHub Profile'
 							>
 								<FaGithub className='h-6 w-6' />
 							</a>
@@ -201,14 +200,14 @@ export default function Hero() {
 								href={heroConfig.social.linkedin}
 								target='_blank'
 								rel='noopener noreferrer'
-								className='text-[#e5e5e5] hover:text-[#fca311] transition-colors duration-300 transform hover:scale-110 cursor-pointer'
+								className='text-foreground hover:text-primary transition-colors duration-300 transform hover:scale-110 cursor-pointer'
 								aria-label='LinkedIn Profile'
 							>
 								<FaLinkedin className='h-6 w-6' />
 							</a>
 							<a
 								href={`mailto:${heroConfig.social.email}`}
-								className='text-[#e5e5e5] hover:text-[#fca311] transition-colors duration-300 transform hover:scale-110 cursor-pointer'
+								className='text-foreground hover:text-primary transition-colors duration-300 transform hover:scale-110 cursor-pointer'
 								aria-label='Email Contact'
 							>
 								<Mail className='h-6 w-6' />

@@ -106,7 +106,7 @@ export default function Hero() {
 							delay={0.2}
 							className='mb-4'
 						>
-							<p className='text-foreground'>
+							<p className='text-muted-foreground'>
 								Hello, I&apos;m {heroConfig.name}
 							</p>
 						</AnimatedText>
@@ -218,7 +218,7 @@ export default function Hero() {
 					{/* Scroll Indicator */}
 					{showScrollIndicator && (
 						<div className='absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block z-20'>
-							<div className='w-6 h-10 border-2 border-accent/60 rounded-full flex justify-center'>
+							<div className='w-6 h-10 border-2 dark:border-accent/60 rounded-full flex justify-center'>
 								<div className='w-1 h-3 bg-accent rounded-full mt-2 animate-pulse' />
 							</div>
 						</div>

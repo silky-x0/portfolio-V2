@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+html {
+  scroll-behavior: smooth;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -33,44 +37,44 @@
 
 :root {
   --radius: 0.625rem;
-  --background: white;
-  --foreground: black;
-  --card: white;
-  --card-foreground: black;
-  --popover: white;
-  --popover-foreground: black;
+  --background: #FFF6E8;
+  --foreground: #18181B;
+  --card: #FFF6E8;
+  --card-foreground: #18181B;
+  --popover: #FFF6E8;
+  --popover-foreground: #18181B;
   --primary: #fca311;
-  --primary-foreground: black;
-  --secondary: black;
-  --secondary-foreground: white;
-  --muted: #f2f2f2;
+  --primary-foreground: #18181B;
+  --secondary: #18181B;
+  --secondary-foreground: #FFF6E8;
+  --muted: #E0E0E0;
   --muted-foreground: #888888;
   --accent: #fca311;
-  --accent-foreground: black;
+  --accent-foreground: #18181B;
   --destructive: #ff0000;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
+  --border: #D0D0D0;
+  --input: #D0D0D0;
   --ring: #fca311;
 }
 
 .dark {
   --radius: 0.625rem;
-  --background: black;
-  --foreground: white;
-  --card: black;
-  --card-foreground: white;
-  --popover: black;
-  --popover-foreground: white;
+  --background: #18181B;
+  --foreground: #FFF6E8;
+  --card: #18181B;
+  --card-foreground: #FFF6E8;
+  --popover: #18181B;
+  --popover-foreground: #FFF6E8;
   --primary: #fca311;
-  --primary-foreground: black;
-  --secondary: white;
-  --secondary-foreground: black;
-  --muted: #1a1a1a;
+  --primary-foreground: #18181B;
+  --secondary: #FFF6E8;
+  --secondary-foreground: #18181B;
+  --muted: #282828;
   --muted-foreground: #888888;
   --accent: #fca311;
-  --accent-foreground: black;
+  --accent-foreground: #18181B;
   --destructive: #ff0000;
-  --border: #333333;
-  --input: #333333;
+  --border: #404040;
+  --input: #404040;
   --ring: #fca311;
 }

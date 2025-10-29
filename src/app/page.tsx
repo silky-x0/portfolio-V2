@@ -20,7 +20,7 @@ export default function Home() {
       <div className="sticky top-0 z-0">
         <Hero />
       </div>
-      <div className="relative z-10 bg-black pointer-events-none">
+      <div className="relative z-10 bg-black">
         <ExperiencePage />
         <Contact />
       </div>

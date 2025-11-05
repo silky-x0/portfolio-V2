@@ -7,16 +7,14 @@ import { Octokit } from '@octokit/rest';
     const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
     const repoRef = process.env.GITHUB_REPOSITORY;
-    const ref = process.env.GITHUB_REF;
+    const prNumber = process.env.PR_NUMBER;
 
-    if (!GEMINI_API_KEY || !GITHUB_TOKEN || !repoRef || !ref) {
-      throw new Error('Missing environment variables: GEMINI_API_KEY, GITHUB_TOKEN, GITHUB_REPOSITORY, GITHUB_REF');
+    if (!GEMINI_API_KEY || !GITHUB_TOKEN || !repoRef || !prNumber) {
+      throw new Error('Missing environment variables: GEMINI_API_KEY, GITHUB_TOKEN, GITHUB_REPOSITORY, PR_NUMBER');
     }
 
     const [owner, repo] = repoRef.split('/');
-    const prMatch = ref.match(/(\d+)$/);
-    if (!prMatch) throw new Error('Could not extract PR number from ref');
-    const prNumber = parseInt(prMatch[1], 10);
+    const prNumberInt = parseInt(prNumber, 10);
 
     const octokit = new Octokit({ auth: GITHUB_TOKEN });
     const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
@@ -115,11 +113,11 @@ ${diff}
       throw new Error('Empty response from Gemini model');
     }
 
-    console.log('💬 Posting review comment to PR #' + prNumber + '...');
+    console.log('💬 Posting review comment to PR #' + prNumberInt + '...');
     await octokit.issues.createComment({
       owner,
       repo,
-      issue_number: prNumber,
+      issue_number: prNumberInt,
       body: `## 🤖 Automated Code Review\n\n${reviewText}`,
     });
 

@@ -7,7 +7,7 @@ import { Octokit } from '@octokit/rest';
     const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
     const repoRef = process.env.GITHUB_REPOSITORY;
-    const prNumber = process.env.PR_NUMBER;
+    const prNumber = process.env.PR_NUMBER || "1";
 
     if (!GEMINI_API_KEY || !GITHUB_TOKEN || !repoRef || !prNumber) {
       throw new Error('Missing environment variables: GEMINI_API_KEY, GITHUB_TOKEN, GITHUB_REPOSITORY, PR_NUMBER');

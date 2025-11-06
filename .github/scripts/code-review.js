@@ -45,12 +45,35 @@ import { Octokit } from '@octokit/rest';
 - Be concise - reviewers should scan in 10 seconds
 - Emojis: 🔒 Security | 🐛 Bug | ⚡ Performance | 📝 Quality | 📋 Best Practice
 
-## Review Focus (Priority Order):
-1. Security vulnerabilities, data exposure, unsafe inputs
-2. Logic bugs, null handling, race conditions
-3. Performance (loops, queries, caching)
-4. Code quality (naming, duplication, error handling)
-5. Best practices (testing, documentation, design)
+## Review Focus Areas (in order of priority):
+
+1. **Security Issues** 🔒
+   - SQL injection, XSS, authentication flaws, sensitive data exposure
+   - Unsafe dependencies or outdated versions
+   - Unvalidated user inputs
+
+2. **Critical Bugs** 🐛
+   - Logic errors that could cause runtime failures
+   - Race conditions, memory leaks, infinite loops
+   - Incorrect null/undefined handling
+
+3. **Performance Issues** ⚡
+   - Unnecessary loops or nested iterations
+   - N+1 query problems (especially in APIs/databases)
+   - Missing caching or optimization opportunities
+   - Inefficient algorithms
+
+4. **Code Quality & Maintainability** 📝
+   - Unclear variable/function names
+   - Missing error handling
+   - Code duplication or violations of DRY principle
+   - Insufficient logging or debugging capabilities
+
+5. **Best Practices & Standards** 📋
+   - Design patterns and architectural issues
+   - Testing gaps (no unit tests for critical logic)
+   - Documentation and comments missing
+   - API design inconsistencies
 
 ## RESPONSE FORMAT (STRICT):
 

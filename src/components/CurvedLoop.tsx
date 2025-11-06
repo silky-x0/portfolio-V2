@@ -29,7 +29,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   const [offset, setOffset] = useState(0);
   const uid = useId();
   const pathId = `curve-${uid}`;
-  const pathD = `M-100,10 Q500,${10 + curveAmount} 1540,10`;
+  const pathD = `M-100,50 Q500,${50 + curveAmount} 1100,50`;
 
   const dragRef = useRef(false);
   const lastXRef = useRef(0);
@@ -104,7 +104,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
 
   return (
     <div
-      className="flex items-center justify-center w-full h-20"
+      className="flex items-center justify-center w-full h-auto"
       style={{ visibility: ready ? 'visible' : 'hidden', cursor: cursorStyle }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
@@ -112,8 +112,8 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
       onPointerLeave={endDrag}
     >
       <svg
-        className="select-none w-full overflow-visible block aspect-[100/12] text-[2.5rem] font-sans uppercase leading-none"
-        viewBox="0 0 1440 40"
+        className="select-none w-full overflow-visible block text-[clamp(1.5rem,4vw,2.5rem)] font-sans uppercase leading-none"
+        viewBox="0 0 1000 100"
       >
         <text ref={measureRef} xmlSpace="preserve" style={{ visibility: 'hidden', opacity: 0, pointerEvents: 'none' }}>
           {text}

@@ -7,14 +7,17 @@ import { Octokit } from '@octokit/rest';
     const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
     const repoRef = process.env.GITHUB_REPOSITORY;
-    const prNumber = process.env.PR_NUMBER;
+    const prNumber = parseInt(process.env.PR_NUMBER, 10);
 
     if (!GEMINI_API_KEY || !GITHUB_TOKEN || !repoRef || !prNumber) {
       throw new Error('Missing environment variables: GEMINI_API_KEY, GITHUB_TOKEN, GITHUB_REPOSITORY, PR_NUMBER');
     }
 
+    if (isNaN(prNumber)) {
+      throw new Error('Invalid PR_NUMBER: must be a number');
+    }
+
     const [owner, repo] = repoRef.split('/');
-    const prNumberInt = parseInt(prNumber, 10);
 
     const octokit = new Octokit({ auth: GITHUB_TOKEN });
     const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
@@ -33,68 +36,55 @@ import { Octokit } from '@octokit/rest';
       return;
     }
 
-    const prompt = `You are a senior software engineer with expertise in code quality, security, and performance.
-Your task is to perform a thorough code review on this GitHub pull request diff.
+    const prompt = `You are a senior code reviewer. Review this PR diff and respond with CLEAN, SCANNABLE formatting.
 
-## Review Focus Areas (in order of priority):
+## IMPORTANT FORMATTING RULES:
+- Use SHORT sentences, not paragraphs
+- Add blank lines between sections
+- Use code blocks only for examples
+- Be concise - reviewers should scan in 10 seconds
+- Emojis: 🔒 Security | 🐛 Bug | ⚡ Performance | 📝 Quality | 📋 Best Practice
 
-1. **Security Issues** 🔒
-   - SQL injection, XSS, authentication flaws, sensitive data exposure
-   - Unsafe dependencies or outdated versions
-   - Unvalidated user inputs
+## Review Focus (Priority Order):
+1. Security vulnerabilities, data exposure, unsafe inputs
+2. Logic bugs, null handling, race conditions
+3. Performance (loops, queries, caching)
+4. Code quality (naming, duplication, error handling)
+5. Best practices (testing, documentation, design)
 
-2. **Critical Bugs** 🐛
-   - Logic errors that could cause runtime failures
-   - Race conditions, memory leaks, infinite loops
-   - Incorrect null/undefined handling
+## RESPONSE FORMAT (STRICT):
 
-3. **Performance Issues** ⚡
-   - Unnecessary loops or nested iterations
-   - N+1 query problems (especially in APIs/databases)
-   - Missing caching or optimization opportunities
-   - Inefficient algorithms
+**📊 Summary**
+[1 sentence: what changed]
 
-4. **Code Quality & Maintainability** 📝
-   - Unclear variable/function names
-   - Missing error handling
-   - Code duplication or violations of DRY principle
-   - Insufficient logging or debugging capabilities
+**🎯 Issues Found: [X]**
 
-5. **Best Practices & Standards** 📋
-   - Design patterns and architectural issues
-   - Testing gaps (no unit tests for critical logic)
-   - Documentation and comments missing
-   - API design inconsistencies
-
-## Response Format:
-
-**Summary:** [1-2 sentences overview of the PR changes]
-
-**Severity Breakdown:**
-- 🔴 Critical: [count] - Security/data loss risks
-- 🟡 Major: [count] - Bugs or significant quality issues
-- 🟢 Minor: [count] - Code quality improvements
-
-**Detailed Findings:**
-
-[For each issue found]
-**[Issue Type]** - [filename]:[line_number]
-- Problem: [Clear explanation of the issue]
-- Risk: [Why this matters]
-- Fix: [Specific, actionable recommendation]
+**🔴 Critical: [X] | 🟡 Major: [X] | 🟢 Minor: [X]**
 
 ---
 
-**Overall Assessment:** [Is this PR ready to merge? Any blockers?]
+**Issues:**
+
+**[Type]** - file.tsx:123
+- Issue: [1 sentence problem]
+- Why: [1 sentence impact]
+- Fix: [1-2 sentences solution]
+
+*Keep this format for each issue - use blank lines between*
 
 ---
 
-## Instructions:
-- Be specific and actionable - developers should know exactly what to fix
-- Only flag genuine issues, not minor style preferences
-- If the code is solid, acknowledge what's done well
-- Prioritize critical issues over style concerns
-- Be professional and constructive in tone
+**✅ Assessment**
+[1-2 sentences: ready to merge? any blockers?]
+
+---
+
+## Rules:
+- Only list REAL issues
+- Be specific with line numbers
+- Make fixes actionable, not vague
+- If code is good, say it
+- No walls of text
 
 Git Diff:
 \`\`\`
@@ -103,7 +93,7 @@ ${diff}
 
     console.log('🧠 Sending diff to Gemini 2.0 Flash...');
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash-001',
+      model: 'gemini-2.0-flash',
       contents: prompt,
     });
 
@@ -113,11 +103,11 @@ ${diff}
       throw new Error('Empty response from Gemini model');
     }
 
-    console.log('💬 Posting review comment to PR #' + prNumberInt + '...');
+    console.log('💬 Posting review comment to PR #' + prNumber + '...');
     await octokit.issues.createComment({
       owner,
       repo,
-      issue_number: prNumberInt,
+      issue_number: prNumber,
       body: `## 🤖 Automated Code Review\n\n${reviewText}`,
     });
 

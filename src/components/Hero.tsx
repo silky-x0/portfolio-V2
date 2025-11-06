@@ -135,25 +135,7 @@ export default function Hero() {
 									className='bg-primary hover:bg-primary/80 text-primary-foreground px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 group shadow-lg shadow-primary/25 cursor-pointer'
 									onClick={() => {
 										console.log('Projects button clicked!');
-										window.open(heroConfig.projectsUrl, "_blank");
-									}}
-								>
-									View My Projects
-									<ArrowRight className='ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform' />
-								</Button>
-
-								<Button
-									variant='outline'
-									size='lg'
-									className='border-border/50 hover:text-foreground hover:bg-accent/20 hover:border-accent px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 group bg-transparent cursor-pointer'
-									onClick={() => {
-										window.open(heroConfig.resumeUrl, "_blank");
-									}}
-								>
-									<Download className='mr-2 h-5 w-5 group-hover:scale-110 transition-transform' />
-									Download Resume
-								</Button>
-							</div>
+		
 						</div>
 
 						{/* Social Links */}

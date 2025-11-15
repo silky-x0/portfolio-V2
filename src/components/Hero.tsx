@@ -127,8 +127,8 @@ export default function Hero() {
                 />
             </div>
 
-						{/* Call to Action Buttons */}
-						<div className='mb-12'>
+												{/* Call to Action Buttons */}
+												<div className='mb-12'>
 							<div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
 								<Button
 									size='lg'
@@ -155,7 +155,6 @@ export default function Hero() {
 								</Button>
 							</div>
 						</div>
-
 						{/* Social Links */}
 						<div className='flex justify-center space-x-6'>
 							<a

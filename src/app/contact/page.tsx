@@ -14,13 +14,63 @@ const validationSchema = yup.object().shape({
 
 export default function Contact() {
   const { theme } = useTheme();
-  const [imageSrc, setImageSrc] = useState('/img/contactBGLight.jpg');
+  // 1x1 transparent pixel as placeholder
+  const [imageSrc, setImageSrc] = useState('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
   const [messageLength, setMessageLength] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
-    setImageSrc(theme === 'dark' ? '/img/contactBGDark.jpg' : '/img/contactBGLight.jpg');
+    const generateGridImage = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return '';
+
+      // Get theme colors from CSS variables
+      const style = getComputedStyle(document.body);
+      const foreground = style.getPropertyValue('--foreground').trim() || (theme === 'dark' ? '#FFF6E8' : '#18181B');
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = foreground;
+      ctx.lineWidth = 1;
+      // Make it subtle
+      ctx.globalAlpha = 0.2;
+
+      const step = 20;
+      for (let x = 0; x <= canvas.width; x += step) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      for (let y = 0; y <= canvas.height; y += step) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+
+      return canvas.toDataURL();
+    };
+
+    const handleResize = () => {
+        setImageSrc(generateGridImage());
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Small timeout to ensure DOM styles are updated
+    const timer = setTimeout(() => {
+       setImageSrc(generateGridImage());
+    }, 50);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', handleResize);
+    };
   }, [theme]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

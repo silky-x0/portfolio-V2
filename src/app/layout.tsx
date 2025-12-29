@@ -20,6 +20,8 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from "@/components/ThemeProvider";
 
+import SmoothScrolling from "@/components/SmoothScrolling";
+
 export default function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -33,7 +35,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Toaster />
-					{children}
+          <SmoothScrolling>
+					  {children}
+          </SmoothScrolling>
 				</ThemeProvider>
 			</body>
 		</html>

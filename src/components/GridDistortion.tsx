@@ -230,8 +230,8 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
       Object.assign(mouseStateRef.current, { x: 0, y: 0, prevX: 0, prevY: 0, vX: 0, vY: 0 });
     };
 
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', handleMouseLeave);
 
     handleResize();
     animate();
@@ -247,8 +247,8 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
         window.removeEventListener('resize', handleResize);
       }
 
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
 
       if (rendererRef.current) {
         rendererRef.current.dispose();
